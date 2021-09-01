@@ -1,16 +1,15 @@
 import React from 'react'
 import { StyleSheet, TouchableOpacity, View, Text, } from 'react-native'
 import { FontAwesome } from '@expo/vector-icons'
+import DeleteButton from '../button/DeleteButton';
 
-const TodoItem = ({
-    title,
-    done,
-}) => {
+
+const TodoItem = ({ title, done, }) => {
     return (
         <View style={styles.todoItemLayout}>
-            <View style={styles.todo}>
+            <View style={styles.todoItemLayer}>
                 <TouchableOpacity
-                    activeOpacity={0.8}
+                    activeOpacity={0.8} 
                     style={done ? styles.done : styles.check}
                 >
                     <FontAwesome name="check" color={done ? '#FFFFFF' : '#E0E0E0'} size={14} />
@@ -19,6 +18,7 @@ const TodoItem = ({
                     {title}
                 </Text>
             </View>
+            <DeleteButton/>
         </View>
     )
 }
@@ -29,13 +29,15 @@ const styles = StyleSheet.create({
         paddingRight: 16,
         backgroundColor: '#FFFFFF',
         borderRadius: 5,
+        flexDirection:'row',
     },
-    todo: {
+    todoItemLayer: {
         flexDirection: 'row',
         alignItems: 'center',
         height: 60,
         borderBottomWidth: 1,
         borderBottomColor: '#E5E5E5',
+        width: '80%',
     },
     todoItemTitle: {
         fontSize: 16,
