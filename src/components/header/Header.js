@@ -20,7 +20,7 @@ const Header = () => {
                 />
                 <View style={styles.headerContainer}>
                     <Text>{dateString}</Text>
-                    <Text>{dayName}</Text>
+                    <Text style={{textAlign: 'center'}}>{dayName}</Text>
                 </View>
             </View>
             <Text style={styles.headerTitle}>
