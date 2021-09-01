@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, View, Image, Text } from 'react-native';
+import { StyleSheet, View, Text, Image, } from 'react-native'
 import Logo from '../../../images/logo-dark.jpg';
 
 const Header = () => {
@@ -12,59 +12,50 @@ const Header = () => {
     const dayName = today.toLocaleDateString('ko-KR', { weekday: 'long' });
 
     return (
-        <View style={styles.HeaderLayout}>
-            <View style={styles.HeaderLayer}>
+        <View style={styles.headerLayout}>
+            <View style={styles.headerLayer}>
                 <Image 
-                    style={styles.HeaderImg}
+                    style={styles.headerImg}
                     source={Logo}
                 />
-                <View>
+                <View style={styles.headerContainer}>
                     <Text>{dateString}</Text>
-                    <Text style={{textAlign: 'center'}}>{dayName}</Text>
+                    <Text>{dayName}</Text>
                 </View>
             </View>
-            <View>
-            <Text style={styles.HeaderTitle}>Todo List</Text>
-            </View>
+            <Text style={styles.headerTitle}>
+                Todo List
+            </Text>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-    HeaderLayout: {
-        width: '100%',
-        height: '20%',
-        borderBottomWidth: 1,
-        borderColor: '#999',
-        marginBottom: 500,
+    headerLayout: {
+        marginTop: 30,
+        marginBottom : 40,
+        marginLeft: 16,
     },
-    HeaderLayer: {
-        height:'20%',
-        width:'20%',
+    headerLayer: {
+        width: '100%',
         flexDirection: 'row',
-        marginTop: 20,
-        marginBottom: 20,
         justifyContent: 'space-between',
     },
-    HeaderImg: {
-        height:'150%',
-        width:'150%',
+    headerImg: {
         resizeMode:'contain',
-        marginRight: 140,
-        marginLeft: 10,
+        height: '60%',
+        width:'20%',
+        justifyContent: 'flex-end',
     },
-    HederWrapper: {
+    headerContainer: {
+        marginRight: 10,
+    },
+    headerTitle: {
         textAlign: 'center',
         fontWeight: 'bold',
         fontStyle: 'italic',
         fontSize: 30,
-    },
-    HeaderTitle: {
-        textAlign: 'center',
-        fontWeight: 'bold',
-        fontStyle: 'italic',
-        fontSize: 30,
-    },
+    }
 })
 
-export default Header;
+export default Header 
