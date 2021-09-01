@@ -10,7 +10,7 @@ const Header = () => {
         day: 'numeric'
     });
     const dayName = today.toLocaleDateString('ko-KR', { weekday: 'long' });
-
+    
     return (
         <View style={styles.headerLayout}>
             <View style={styles.headerLayer}>
