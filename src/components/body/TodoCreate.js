@@ -1,16 +1,29 @@
-import React from 'react'
+import React, { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 
-const TodoCreate = () => {
+const TodoCreate = ({ add, }) => {
+    let content = ''
+    const [task, setTask] = useState();
+    const [taskItems, setTaskItems] = useState([]);
+    const handleAddTask = (content) => {
+        console.log(content);
+      }
+    const onChangeText = (text) => {
+        content = text
+    }
     return (
     <View style={styles.todoCreateLayout}>
         <TextInput
             autoFocus
-            placeholder="할 일을 입력해주세요."
             style={styles.todoCreateInput}
+            placeholder="할 일을 입력 후, Enter를 누르세요."
+            onChangeText={onChangeText}
+            onEndEditing={() => add(content)}
         >
         </TextInput>
-        <TouchableOpacity style={{width: '30%'}}>
+        <TouchableOpacity 
+            style={{width: '30%'}}
+        >
             <View style={styles.todoCreateButton}>
                 <Text>추가하기</Text>
             </View>
@@ -27,7 +40,7 @@ const styles = StyleSheet.create({
     },
     todoCreateInput: {
         backgroundColor: '#FFFFFF',
-        width: '70%',
+        width: '100%',
     },
     todoCreateButton: {
         width: 120,

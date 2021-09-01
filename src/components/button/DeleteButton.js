@@ -2,13 +2,18 @@ import React from 'react'
 import { TouchableOpacity, StyleSheet, } from 'react-native'
 import { AntDesign } from '@expo/vector-icons';
 
-const DeleteButton = () => {
+const DeleteButton = ({ onPress, }) => {
     return (
         <TouchableOpacity
             activeOpacity={0.8}
             style={styles.deleteButton}
+            onPress={onPress}
         >
-            <AntDesign name="delete" size={14} color="#999"/>
+            <AntDesign 
+                name="delete"
+                size={14}
+                color="#999"
+            />
         </TouchableOpacity>
     )
 }

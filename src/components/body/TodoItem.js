@@ -4,21 +4,22 @@ import { FontAwesome } from '@expo/vector-icons'
 import DeleteButton from '../button/DeleteButton';
 
 
-const TodoItem = ({ title, done, }) => {
+const TodoItem = ({ title, done, remove, toggle, }) => {
     return (
         <View style={styles.todoItemLayout}>
             <View style={styles.todoItemLayer}>
                 <TouchableOpacity
-                    activeOpacity={0.8} 
+                    activeOpacity={0.8}
+                    onPress={toggle}
                     style={done ? styles.done : styles.check}
                 >
                     <FontAwesome name="check" color={done ? '#FFFFFF' : '#E0E0E0'} size={14} />
                 </TouchableOpacity>
-                <Text style={styles.todoItemTitle}>
+                <Text style={styles.todoItemTitle} style={done ? {fontWeight: '100'} : {fontWeight: 'bold'}}>
                     {title}
                 </Text>
             </View>
-            <DeleteButton/>
+            <DeleteButton onPress={remove}/>
         </View>
     )
 }
@@ -41,7 +42,6 @@ const styles = StyleSheet.create({
     },
     todoItemTitle: {
         fontSize: 16,
-        color: '#424242'
     },
     check: {
         borderWidth: 1,

@@ -1,18 +1,57 @@
 import React from 'react';
-import { StyleSheet, SafeAreaView, } from 'react-native';
-import Header from './src/components/header/Header';
-import TodoItem from './src/components/body/TodoItem';
-import TodoCreate from './src/components/body/TodoCreate';
+import { StyleSheet, SafeAreaView, FlatList, } from 'react-native';
+import Header from 'components/header/Header';
+import TodoItem from 'components/body/TodoItem';
+import TodoCreate from 'components/body/TodoCreate';
 
-export default function App() {
-  return (
-    <SafeAreaView style={styles.container}>
-      <Header />
-      <TodoCreate />
-      <TodoItem title="리액트 공부" done={true} />
-      <TodoItem title="알고리즘 공부" done={true} />
-    </SafeAreaView>
-  );
+export default class App extends React.Component {
+  state = {
+    todos: [
+    {
+      title: "일기쓰기",
+      done: true,
+    },
+    ],
+  }
+
+  render() {
+    return (
+      <SafeAreaView style={styles.container}>
+        <Header />
+        <TodoCreate 
+          add={(title) => {
+            this.setState({
+              todos: this.state.todos.concat({
+                title: title,
+                done: false,
+              }),
+            })
+          }}
+        />
+        <FlatList 
+          data={this.state.todos}
+          renderItem={({ item, index }) => {
+            return (
+              <TodoItem
+                title={item.title}
+                done={item.done}
+                remove={() => {
+                  this.setState({
+                    todos: this.state.todos.filter((_, i) => i !== index)
+                  })
+                }}
+                toggle={() => {
+                  const newTodos = [...this.state.todos]
+                  newTodos[index].done = !newTodos[index].done
+                  this.setState({ todos: newTodos})
+                }}
+              />
+            )
+          }}
+        />
+      </SafeAreaView>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
