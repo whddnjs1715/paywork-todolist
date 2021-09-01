@@ -1,12 +1,17 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, SafeAreaView, } from 'react-native';
 import Header from './src/components/header/Header';
+import TodoItem from './src/components/body/TodoItem';
+import TodoCreate from './src/components/body/TodoCreate';
 
 export default function App() {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Header />
-    </View>
+      <TodoCreate />
+      <TodoItem title="리액트 공부" done={true} />
+      <TodoItem title="알고리즘 공부" done={true} />
+    </SafeAreaView>
   );
 }
 
