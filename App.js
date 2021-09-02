@@ -1,10 +1,16 @@
 import React from 'react';
-import { StyleSheet, SafeAreaView, FlatList, Text,} from 'react-native';
+import { StyleSheet, SafeAreaView, FlatList, Text, AsyncStorage} from 'react-native';
 import Header from 'components/header/Header';
 import TodoItem from 'components/body/TodoItem';
 import TodoCreate from 'components/body/TodoCreate';
 
 export default class App extends React.Component {
+  componentDidMount() {
+    AsyncStorage.getItem('@todo:state').then((state) => {
+      this.setState(JSON.parse(state))
+    })
+  }
+
   state = {
     todos: [
     {
@@ -12,6 +18,10 @@ export default class App extends React.Component {
       done: true,
     },
     ],
+  }
+
+  save = () => {
+    AsyncStorage.setItem('@todo:state', JSON.stringify(this.state))
   }
 
   render() {
@@ -27,7 +37,7 @@ export default class App extends React.Component {
                 title: title,
                 done: false,
               }),
-            })
+            }, this.save)
           }}
         />
         <FlatList 
@@ -37,15 +47,18 @@ export default class App extends React.Component {
               <TodoItem
                 title={item.title}
                 done={item.done}
+                keyExtractor={(id, index) => {
+                  return id + '${index}'
+                }}
                 remove={() => {
                   this.setState({
                     todos: this.state.todos.filter((_, i) => i !== index)
-                  })
+                  }, this.save)
                 }}
                 toggle={() => {
                   const newTodos = [...this.state.todos]
                   newTodos[index].done = !newTodos[index].done
-                  this.setState({ todos: newTodos })
+                  this.setState({ todos: newTodos}, this.save)
                 }}
               />
             )
