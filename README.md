@@ -68,7 +68,7 @@
 ## 🖥 작동 화면
 
 <div style={display: flex;}>
-<img src="" alt="record" width="600" height="400" />
+<img src="https://user-images.githubusercontent.com/73818206/131776448-5646808b-e241-40d7-8d9f-84055353816c.gif" alt="record" width="400" height="800" />
 
 </div>
 
