@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet, View, Text, Image, } from 'react-native'
-import Logo from '../../../images/logo-dark.jpg';
+import Logo from '../../../assets/logo-dark.jpg';
 
 const Header = () => {
     const today = new Date();
@@ -33,7 +33,7 @@ const Header = () => {
 const styles = StyleSheet.create({
     headerLayout: {
         marginTop: 30,
-        marginBottom : 40,
+        marginBottom : 10,
         marginLeft: 16,
     },
     headerLayer: {
